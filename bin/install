@@ -1,0 +1,49 @@
+#!/bin/bash
+
+shopt -s nullglob
+
+base="$(mktemp -d /tmp/ubootstrap-install.XXXXXXXXXX)"
+bin=/usr/local/bin
+cwd="$(pwd)"
+script_base="$(cd "$(dirname "$0")" && pwd)"
+
+source "${script_base}/common"
+
+assert_directory_exists "${bin}"
+
+cd "${base}"
+
+print_greeting "Starting Installation"
+
+recipes=()
+for recipe in ${script_base}/../recipes/*; do
+	package="$(get_package_from_recipe "${recipe}")"
+	if ask "Install ${package}?" Y ; then
+		recipes+=(${recipe});
+	fi
+done
+
+echo
+if ask "Skip already installed non-apt packages?" Y; then
+	is_skip=true
+else
+	is_skip=false
+fi
+
+if ask "Upgrade existing packages?" Y; then
+	print_header "Upgrading existing packages"
+	update \
+		&& sudo apt-get -qq upgrade -y \
+		&& print_ok "Done" \
+		|| print_error "Failed to upgrade existing packages"
+fi
+
+for recipe in ${recipes[@]} ; do
+	package="$(get_package_from_recipe ${recipe})"
+	print_header "Installing ${package}"
+	source "${recipe}"
+done
+
+sudo apt-get -qq autoremove --purge -y >/dev/null
+
+echo -e "\nDone!\n"

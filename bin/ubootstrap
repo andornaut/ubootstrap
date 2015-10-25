@@ -1,0 +1,39 @@
+#!/bin/bash
+# Install with $ bash <(wget -q -O - https://raw.github.com/andornaut/ubootstrap/master/bin/ubootstrap)
+# dfm docs: https://github.com/justone/dotfiles
+
+set -e
+
+dotfiles_url=https://github.com/andornaut/dotfiles.git
+dotfiles_dst=~/.dotfiles
+ubootstrap_url=https://github.com/andornaut/ubootstrap.git
+ubootstrap_dst="$(mktemp -d /tmp/ubootstrap.XXXXXXXXXX)"
+
+message="##############################################################################
+Bootstrapping Environment
+##############################################################################"
+echo -e "\n\033[1;32m${message}\033[0m\n";
+
+echo "Updating apt"
+sudo apt-get -qq update -y
+echo "Installing perl and git"
+sudo apt-get -qq install perl git -y >/dev/null
+
+if [[ -e "${dotfiles_dst}" ]]; then
+	echo "Updating ${dotfiles_dst}"
+	"${dotfiles_dst}/bin/dfm" --quiet umi
+else
+	echo "Installing from ${dotfiles_dst}"
+	git clone -q "${dotfiles_url}" "${dotfiles_dst}" >/dev/null
+	"${dotfiles_dst}/bin/dfm" --quiet
+fi
+
+profile_path="${HOME}/.bash_profile"
+if [[ ! -e "${profile_path}" ]]; then
+	profile_path="${HOME}/.profile"
+fi
+source "${profile_path}"
+
+echo "Bootstrapping from ${ubootstrap_url}"
+git clone -q "${ubootstrap_url}" "${ubootstrap_dst}"
+"${ubootstrap_dst}/bin/install"

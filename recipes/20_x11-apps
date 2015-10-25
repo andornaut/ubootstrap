@@ -1,0 +1,22 @@
+install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
+	xul-ext-lightning xul-ext-calendar-timezones radiotray vlc gtk-redshift \
+	desktop-file-utils libc6 libcairo2 libglib2.0-0 libpango1.0-0 libx11-6 \
+	shared-mime-info intltool pkg-config libglib2.0-dev libgtk2.0-0 \
+	libgtk2.0-bin libgtk2.0-dev libudev1 libudev-dev wireshark xcompmgr \
+	gtk-theme-switch gtk2-engines-pixbuf gtk2-engines-murrine gtk2-engines \
+	spacefm udevil xfce4-power-manager
+
+install_no_recommends gnome-disk-utility gnome-control-center lightdm \
+	lightdm-gtk-greeter
+
+package="atom"
+url="https://atom.io/download/deb"
+install_dpkg_wget "${package}" "${url}"
+
+package=google-chrome
+url="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+install_dpkg_wget "${package}" "${url}"
+
+add_repo "ppa:daniel.pavel/solaar"
+update
+install solaar
