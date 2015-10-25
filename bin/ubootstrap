@@ -20,13 +20,12 @@ echo "Installing perl and git"
 sudo apt-get -qq install perl git -y >/dev/null
 
 if [[ -e "${dotfiles_dst}" ]]; then
-	echo "Updating ${dotfiles_dst}"
-	"${dotfiles_dst}/bin/dfm" --quiet umi
+	echo "Updating dotfiles from ${dotfiles_url}"
 else
-	echo "Installing from ${dotfiles_dst}"
+	echo "Installing dotfiles from ${dotfiles_url}"
 	git clone -q "${dotfiles_url}" "${dotfiles_dst}" >/dev/null
-	"${dotfiles_dst}/bin/dfm" --quiet
 fi
+"${dotfiles_dst}/bin/dfm" umi --quiet
 
 profile_path="${HOME}/.bash_profile"
 if [[ ! -e "${profile_path}" ]]; then
