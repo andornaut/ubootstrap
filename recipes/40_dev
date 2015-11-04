@@ -1,6 +1,21 @@
 install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
 	mercurial git python-sphinx python-nose2 node-less fabric postgresql \
-	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr
+	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
+	ruby virtualbox
+
+add_repo "http://downloads.hipchat.com/linux/apt"
+install hipchat
+
+package="vagrant"
+if should_install "${package}"; then
+	echo
+	if ask "Install ${package}?" Y; then
+		install_dpkg_wget "${package}" "https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_i686.deb"
+		install vagrant-lxc
+	else
+		skip "${package}"
+	fi
+fi
 
 install_jetbrains() {
 	local package=$1
@@ -31,12 +46,11 @@ install_jetbrains() {
 				&& success "${package}" \
 				|| failure "${package}"
 		else
-			skip $package
+			skip "${package}"
 		fi
 	fi
 }
 
 
-install_jetbrains pycharm 'http://download.jetbrains.com/python/pycharm-' professional community 4.5.4
-
-install_jetbrains idea 'http://download.jetbrains.com/idea/ideaI' U C 14.1.5 
+install_jetbrains pycharm 'http://download.jetbrains.com/python/pycharm-' professional community 5.0
+install_jetbrains idea 'http://download.jetbrains.com/idea/ideaI' U C 15.0 
