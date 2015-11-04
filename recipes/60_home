@@ -1,9 +1,0 @@
-package="dropbox"
-if should_install "${package}" ; then
-	if ask "Install ${package}" Y ; then
-		url='https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.2_amd64.deb'
-		install_dpkg_wget "${package}" "${url}"
-	fi
-fi
-
-install samba smbclient cups cifs-utils

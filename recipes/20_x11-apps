@@ -6,8 +6,7 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	gtk-theme-switch gtk2-engines-pixbuf gtk2-engines-murrine gtk2-engines \
 	spacefm udevil xfce4-power-manager
 
-install_no_recommends gnome-disk-utility gnome-control-center lightdm \
-	lightdm-gtk-greeter
+install_no_recommends gnome-disk-utility gnome-control-center lightdm
 
 package="atom"
 url="https://atom.io/download/deb"
@@ -17,6 +16,15 @@ package=google-chrome
 url="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 install_dpkg_wget "${package}" "${url}"
 
+# Solaar is a Linux device manager for Logitech’s Unifying Receiver peripherals.
 add_repo "ppa:daniel.pavel/solaar"
 update
 install solaar
+
+package="dropbox"
+if should_install "${package}" ; then
+	if ask "Install ${package}" Y ; then
+		url='https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb'
+		install_dpkg_wget "${package}" "${url}"
+	fi
+fi

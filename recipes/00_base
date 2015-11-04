@@ -4,6 +4,7 @@ install aptitude zip unzip gcc coreutils make build-essential exuberant-ctags \
 	python-software-properties software-center software-properties-common \
 	ranger openconnect autotools-dev bash build-essential fakeroot libc6 \
 	ubuntu-drivers-common linux-firmware-nonfree tree smartmontools sox \
-	laptop-mode-tools i2c-tools acpi lm-sensors mpv iperf git mercurial
+	laptop-mode-tools i2c-tools acpi lm-sensors mpv iperf git mercurial \
+	samba smbclient cups cifs-utils
 
 sudo ubuntu-drivers autoinstall

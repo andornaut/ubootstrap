@@ -4,6 +4,7 @@ install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtual
 	ruby virtualbox
 
 add_repo "http://downloads.hipchat.com/linux/apt"
+update
 install hipchat
 
 package="vagrant"
