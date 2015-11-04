@@ -1,7 +1,7 @@
 install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
 	mercurial git python-sphinx python-nose2 node-less fabric postgresql \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
-	ruby virtualbox
+	ruby virtualbox virtualbox-dkms virtualbox-guest-dkm
 
 add_repo "http://downloads.hipchat.com/linux/apt"
 update
