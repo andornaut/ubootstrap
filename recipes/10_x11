@@ -1,4 +1,4 @@
-install xorg x11-xserver-utils xscreensaver hsetroot ttf-mscorefonts-installer \
+install xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
 	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk
 
 package="fonts-font-awesome"

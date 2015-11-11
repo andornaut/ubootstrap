@@ -4,9 +4,9 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	shared-mime-info intltool pkg-config libglib2.0-dev libgtk2.0-0 \
 	libgtk2.0-bin libgtk2.0-dev libudev1 libudev-dev wireshark xcompmgr \
 	gtk-theme-switch gtk2-engines-pixbuf gtk2-engines-murrine gtk2-engines \
-	spacefm udevil xfce4-power-manager
+	spacefm udevil xfce4-power-manager scrot
 
-install_no_recommends gnome-disk-utility gnome-control-center lightdm
+install_no_recommends gnome-disk-utility gnome-control-center lightdm gnome-screensaver
 
 package="atom"
 url="https://atom.io/download/deb"
