@@ -53,5 +53,5 @@ install_jetbrains() {
 }
 
 
-install_jetbrains pycharm 'http://download.jetbrains.com/python/pycharm-' professional community 5.0
+install_jetbrains pycharm 'http://download.jetbrains.com/python/pycharm-' professional community 5.0.3
 install_jetbrains idea 'http://download.jetbrains.com/idea/ideaI' U C 15.0 
