@@ -3,9 +3,10 @@ install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtual
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
 	ruby virtualbox virtualbox-dkms virtualbox-guest-dkm
 
-add_repo "http://downloads.hipchat.com/linux/apt"
-update
-install hipchat
+#Atlassian doesn't provide a wily repo for hipchat.
+#add_repo "http://downloads.hipchat.com/linux/apt"
+#update
+#install hipchat
 
 package="vagrant"
 if should_install "${package}"; then
