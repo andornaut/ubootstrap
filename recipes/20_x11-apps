@@ -17,14 +17,26 @@ url="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 install_dpkg_wget "${package}" "${url}"
 
 # Solaar is a Linux device manager for Logitech’s Unifying Receiver peripherals.
-add_repo "ppa:daniel.pavel/solaar"
-update
-install solaar
+# Disabled pending support for ubuntu 16.04.
+#add_repo "ppa:daniel.pavel/solaar"
+#update
+#install solaar
 
 package="dropbox"
 if should_install "${package}" ; then
 	if ask "Install ${package}" Y ; then
 		url='https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb'
 		install_dpkg_wget "${package}" "${url}"
+	fi
+fi
+
+package="insync"
+if should_install "${package}" ; then
+	if ask "Install ${package}" Y ; then
+		wget -qO - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key \
+			| sudo apt-key add -
+		echo "deb http://apt.insynchq.com/ubuntu xenial non-free contrib" | sudo tee /etc/apt/sources.list.d/insync.list > /dev/null
+		update
+		install insync
 	fi
 fi

@@ -1,5 +1,5 @@
 install xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
-	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk
+	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools
 
 package="fonts-font-awesome"
 url="http://launchpadlibrarian.net/188147155/fonts-font-awesome_4.2.0~dfsg-1_all.deb"
