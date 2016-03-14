@@ -1,0 +1,49 @@
+install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
+	xul-ext-lightning xul-ext-calendar-timezones radiotray vlc gtk-redshift \
+	desktop-file-utils libc6 libcairo2 libglib2.0-0 libpango1.0-0 libx11-6 \
+	shared-mime-info intltool pkg-config libglib2.0-dev libgtk2.0-0 \
+	libgtk2.0-bin libgtk2.0-dev libudev1 libudev-dev wireshark xcompmgr \
+	gtk-theme-switch gtk2-engines-pixbuf gtk2-engines-murrine gtk2-engines \
+	spacefm udevil xfce4-power-manager scrot audacity xss-lock \
+	gnome-disk-utility gnome-control-center lightdm gnome-screensaver
+	xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
+	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools
+	fonts-font-awesome
+
+package=source-code-pro
+url='https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip'
+dst="/usr/share/fonts/truetype/${package}"
+download_wget "${package}" "$url" \
+	&& remove_if_exists "${dst}" \
+	&& sudo unzip -qqj "${base}/${package}" '*/TTF/*ttf' -d "${dst}" \
+	&& sudo fc-cache \
+	&& success "${package}" \
+	|| failure "${package}"
+
+install_dpkg_wget atom https://atom.io/download/deb
+install_dpkg_wget google-chrome https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+
+# Solaar is a Linux device manager for Logitech’s Unifying Receiver peripherals.
+# Disabled pending support for ubuntu 16.04.
+#add_repo "ppa:daniel.pavel/solaar"
+#update
+#install solaar
+
+package="dropbox"
+if should_install "${package}" ; then
+	if ask "Install ${package}" Y ; then
+		url='https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb'
+		install_dpkg_wget "${package}" "${url}"
+	fi
+fi
+
+package="insync"
+if should_install "${package}" ; then
+	if ask "Install ${package}" Y ; then
+		wget -qO - https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key \
+			| sudo apt-key add -
+		echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -cs) non-free contrib" | sudo tee /etc/apt/sources.list.d/insync.list > /dev/null
+		update
+		install insync
+	fi
+fi
