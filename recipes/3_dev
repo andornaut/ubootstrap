@@ -1,17 +1,21 @@
 install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
 	mercurial git python-sphinx python-nose2 node-less fabric postgresql \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
-	ruby virtualbox virtualbox-dkms virtualbox-guest-dkm
+	ruby
+
+package="virtualbox"
+if should_install "${package}" && ask "Install ${package}" Y ; then
+	wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc \
+		| sudo apt-key add -
+	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list > /dev/null
+	update
+	install virtualbox virtualbox-dkms virtualbox-guest-dkm
+fi
 
 package="vagrant"
-if should_install "${package}"; then
-	echo
-	if ask "Install ${package}?" Y; then
-		install_dpkg_wget "${package}" "https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_i686.deb"
-		install vagrant-lxc
-	else
-		skip "${package}"
-	fi
+if should_install "${package}" && ask "Install ${package}?" Y; then
+	install_dpkg_wget "${package}" "https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_i686.deb"
+	install vagrant-lxc
 fi
 
 install_jetbrains() {
@@ -21,30 +25,25 @@ install_jetbrains() {
 	local community=$4
 	local version=$5
 
-	if should_install "${package}" ; then
-		echo
-		if ask "Install ${package}?" Y; then
-			if ask "Install ${package} 'professional' instead of 'community' edition" Y; then
-				edition="${professional}"
-			else
-				edition="${community}"
-			fi
-
-			dst="${base}/${package}"
-			dst_bin="/opt/${package}-${edition}-${version}"
-			
-			dst_sh="${bin}/${package}"
-			download_wget "${package}" "${url_prefix}${edition}-${version}.tar.gz" \
-				&& remove_if_exists "${dst_bin}" \
-				&& sudo mkdir "${dst_bin}" \
-				&& sudo tar -xzf "${dst}" -C "${dst_bin}" --strip-components=1 \
-				&& remove_if_exists "${dst_sh}" \
-				&& sudo ln -s "${dst_bin}/bin/${package}.sh" "${dst_sh}" \
-				&& success "${package}" \
-				|| failure "${package}"
+	if should_install "${package}" && ask "Install ${package}?" Y; then
+		if ask "Install ${package} 'professional' instead of 'community' edition" Y; then
+			edition="${professional}"
 		else
-			skip "${package}"
+			edition="${community}"
 		fi
+
+		dst="${base}/${package}"
+		dst_bin="/opt/${package}-${edition}-${version}"
+		
+		dst_sh="${bin}/${package}"
+		download_wget "${package}" "${url_prefix}${edition}-${version}.tar.gz" \
+			&& remove_if_exists "${dst_bin}" \
+			&& sudo mkdir "${dst_bin}" \
+			&& sudo tar -xzf "${dst}" -C "${dst_bin}" --strip-components=1 \
+			&& remove_if_exists "${dst_sh}" \
+			&& sudo ln -s "${dst_bin}/bin/${package}.sh" "${dst_sh}" \
+			&& success "${package}" \
+			|| failure "${package}"
 	fi
 }
 
