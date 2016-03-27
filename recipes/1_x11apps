@@ -1,5 +1,5 @@
 install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
-	xul-ext-lightning xul-ext-calendar-timezones radiotray vlc gtk-redshift \
+	xul-ext-lightning xul-ext-calendar-timezones vlc gtk-redshift \
 	desktop-file-utils libc6 libcairo2 libglib2.0-0 libpango1.0-0 libx11-6 \
 	shared-mime-info intltool pkg-config libglib2.0-dev libgtk2.0-0 \
 	libgtk2.0-bin libgtk2.0-dev libudev1 libudev-dev wireshark xcompmgr \
