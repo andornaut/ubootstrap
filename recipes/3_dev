@@ -1,7 +1,18 @@
-install openjdk-7-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
+install openjdk-8-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
 	mercurial git python-sphinx python-nose2 node-less fabric postgresql \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
 	ruby
+
+package="vagrant"
+if should_install "${package}" && ask "Install ${package}?" Y; then
+	install_dpkg_wget "${package}" "https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb"
+	install vagrant-lxc
+	install bsdtar redir ruby-childprocess ruby-domain-name ruby-erubis ruby-ffi \
+		ruby-http-cookie ruby-dev ruby-i18n ruby-listen ruby-log4r \
+		ruby-mime-types ruby-net-scp ruby-net-sftp ruby-net-ssh 
+		ruby-rb-inotify ruby-rest-client ruby-sqlite3 ruby-unf ruby-unf-ext
+	sudo gem install winrm
+fi
 
 package="virtualbox"
 if should_install "${package}" && ask "Install ${package}" Y ; then
@@ -9,13 +20,7 @@ if should_install "${package}" && ask "Install ${package}" Y ; then
 		| sudo apt-key add -
 	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list > /dev/null
 	update
-	install virtualbox virtualbox-dkms virtualbox-guest-dkm
-fi
-
-package="vagrant"
-if should_install "${package}" && ask "Install ${package}?" Y; then
-	install_dpkg_wget "${package}" "https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_i686.deb"
-	install vagrant-lxc
+	install virtualbox virtualbox-dkms virtualbox-guest-dkms
 fi
 
 install_jetbrains() {
