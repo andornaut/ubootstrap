@@ -1,7 +1,15 @@
 install openjdk-8-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
-	mercurial git python-sphinx python-nose2 node-less fabric postgresql \
+	mercurial git python-sphinx node-less postgresql \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
 	ruby
+
+package="docker"
+if should_install "${package}" && ask "Install ${package}" Y ; then
+	sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+	echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/${package}.list > /dev/null
+	update
+	install apt-transport-https ca-certificates docker-engine
+fi
 
 package="vagrant"
 if should_install "${package}" && ask "Install ${package}?" Y; then
@@ -18,7 +26,7 @@ package="virtualbox"
 if should_install "${package}" && ask "Install ${package}" Y ; then
 	wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc \
 		| sudo apt-key add -
-	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list > /dev/null
+	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/${package}.list > /dev/null
 	update
 	install virtualbox virtualbox-dkms virtualbox-guest-dkms
 fi
@@ -55,3 +63,4 @@ install_jetbrains() {
 
 install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- professional community 2016.1.2
 install_jetbrains idea https://download.jetbrains.com/idea/ideaI U C 2016.1
+
