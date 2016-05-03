@@ -5,7 +5,7 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	libgtk2.0-bin libgtk2.0-dev libudev1 libudev-dev wireshark xcompmgr \
 	gtk-theme-switch gtk2-engines-pixbuf gtk2-engines-murrine gtk2-engines \
 	spacefm udevil xfce4-power-manager scrot audacity xss-lock \
-	gnome-disk-utility gnome-control-center lightdm gnome-screensaver \
+	gnome-disk-utility gnome-control-center lightdm \
 	xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
 	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools \
 	fonts-font-awesome
