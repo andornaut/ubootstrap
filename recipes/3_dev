@@ -34,22 +34,25 @@ fi
 install_jetbrains() {
 	local package=$1
 	local url_prefix=$2
-	local professional=$3
-	local community=$4
-	local version=$5
+	local version=$3
+	local professional=$4
+	local community=$5
+	local edition
 
 	if should_install "${package}" && ask "Install ${package}?" Y; then
-		if ask "Install ${package} 'professional' instead of 'community' edition" Y; then
-			edition="${professional}"
-		else
-			edition="${community}"
+		if [[ -n "${professional}" ]] ; then
+			if ask "Install ${package} 'professional' instead of 'community' edition" Y; then
+				edition="${professional}-"
+			else
+				edition="${community}-"
+			fi
 		fi
 
 		dst="${base}/${package}"
-		dst_bin="/opt/${package}-${edition}-${version}"
+		dst_bin="/opt/${package}-${edition}${version}"
 		
 		dst_sh="${bin}/${package}"
-		download_wget "${package}" "${url_prefix}${edition}-${version}.tar.gz" \
+		download_wget "${package}" "${url_prefix}${edition}${version}.tar.gz" \
 			&& remove_if_exists "${dst_bin}" \
 			&& sudo mkdir "${dst_bin}" \
 			&& sudo tar -xzf "${dst}" -C "${dst_bin}" --strip-components=1 \
@@ -60,7 +63,6 @@ install_jetbrains() {
 	fi
 }
 
-
-install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- professional community 2016.1.2
-install_jetbrains idea https://download.jetbrains.com/idea/ideaI U C 2016.1
-
+install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.1.2 professional community
+install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2016.1.1 U C
+install_jetbrains webstorm https://download.jetbrains.com/webstorm/WebStorm- 2016.1.1
