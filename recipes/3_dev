@@ -24,7 +24,7 @@ fi
 
 package="virtualbox"
 if should_install "${package}" && ask "Install ${package}" Y ; then
-	wget -qO - https://www.virtualbox.org/download/oracle_vbox.asc \
+	wget -qO - https://www.virtualbox.org/download/oracle_vbox_2016.asc \
 		| sudo apt-key add -
 	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/${package}.list > /dev/null
 	update
