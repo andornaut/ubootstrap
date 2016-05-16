@@ -8,7 +8,7 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	gnome-disk-utility gnome-control-center lightdm xautolock \
 	xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
 	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools \
-	fonts-font-awesome
+	fonts-font-awesome fonts-roboto
 
 package=source-code-pro
 url='https://codeload.github.com/adobe-fonts/source-code-pro/zip/2.010R-ro/1.030R-it'
