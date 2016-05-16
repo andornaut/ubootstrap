@@ -8,7 +8,7 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	gnome-disk-utility gnome-control-center lightdm xautolock \
 	xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
 	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools \
-	fonts-font-awesome fonts-roboto
+	fonts-font-awesome fonts-roboto solaar
 
 package=source-code-pro
 url='https://codeload.github.com/adobe-fonts/source-code-pro/zip/2.010R-ro/1.030R-it'
@@ -21,7 +21,11 @@ download_wget "${package}" "$url" \
 	|| failure "${package}"
 
 install_dpkg_wget atom https://atom.io/download/deb
-install_dpkg_wget google-chrome https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+
+# Should eventually be fixed in chrome
+# https://www.reddit.com/r/linux4noobs/comments/4grdo7/an_error_occurred_w_there_is_no_public_key/d2k4ucy
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1397BC53640DB551
+install_dpkg_wget google-chrome https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 package="spotify"
 if should_install "${package}" && ask "Install ${package}" Y ; then
@@ -30,12 +34,6 @@ if should_install "${package}" && ask "Install ${package}" Y ; then
 	update
 	install spotify-client
 fi
-
-# Solaar is a Linux device manager for Logitech’s Unifying Receiver peripherals.
-# Disabled pending support for ubuntu 16.04.
-#add_repo "ppa:daniel.pavel/solaar"
-#update
-#install solaar
 
 package="dropbox"
 if should_install "${package}" && ask "Install ${package}" Y ; then
