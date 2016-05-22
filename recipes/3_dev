@@ -1,7 +1,7 @@
-install openjdk-8-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
-	mercurial git python-sphinx node-less postgresql \
-	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
-	ruby
+install openjdk-8-jdk ant python python-dev python-pip python-virtualenv \
+	virtualenvwrapper pydb mercurial git python-sphinx node-less postgresql \
+	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev \
+	xserver-xephyr ruby
 
 package="docker"
 if should_install "${package}" && ask "Install ${package}" Y ; then
@@ -63,6 +63,6 @@ install_jetbrains() {
 	fi
 }
 
-install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.1.2 professional community
+install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.1.3 professional community
 install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2016.1.1 U C
 install_jetbrains webstorm https://download.jetbrains.com/webstorm/WebStorm- 2016.1.1
