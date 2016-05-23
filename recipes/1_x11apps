@@ -8,7 +8,8 @@ install feh filezilla firefox gimp inkscape libreoffice pidgin thunderbird \
 	gnome-disk-utility gnome-control-center lightdm xautolock \
 	xorg x11-xserver-utils hsetroot ttf-mscorefonts-installer \
 	ttf-dejavu xfonts-terminus fonts-inconsolata usb-creator-gtk suckless-tools \
-	fonts-font-awesome fonts-roboto solaar notify-osd gksu
+	fonts-font-awesome fonts-roboto solaar notify-osd gksu adwaita-icon-theme-full \
+	gnome-themes-standard
 
 sudo add-apt-repository -y ppa:leolik/leolik >/dev/null
 sudo add-apt-repository -y ppa:nilarimogard/webupd8 >/dev/null
