@@ -1,7 +1,7 @@
-install openjdk-8-jdk ant python python-dev python-pip python-virtualenv virtualenvwrapper pydb \
-	mercurial git python-sphinx node-less postgresql \
-	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev xserver-xephyr \
-	ruby
+install openjdk-8-jdk ant python python-dev python-pip python-virtualenv \
+	virtualenvwrapper pydb mercurial git python-sphinx node-less postgresql \
+	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev \
+	xserver-xephyr ruby
 
 package="docker"
 if should_install "${package}" && ask "Install ${package}" Y ; then
