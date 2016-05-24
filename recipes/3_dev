@@ -28,7 +28,7 @@ if should_install "${package}" && ask "Install ${package}" Y ; then
 		| sudo apt-key add -
 	echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/${package}.list > /dev/null
 	update
-	install virtualbox virtualbox-dkms virtualbox-guest-dkms
+	install virtualbox virtualbox-dkms
 fi
 
 install_jetbrains() {
@@ -63,6 +63,6 @@ install_jetbrains() {
 	fi
 }
 
-install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.1.2 professional community
+install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.1.3 professional community
 install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2016.1.1 U C
 install_jetbrains webstorm https://download.jetbrains.com/webstorm/WebStorm- 2016.1.1
