@@ -93,7 +93,7 @@ download_wget() {
 	local dst="${base}/${package}"
 
 	remove_if_exists "${dst}"
-	wget -q -O "${dst}" "${url}" || (print_error "Failed to download ${package}" ; return 1)
+	wget -q -O "${dst}" "${url}" || { print_error "Failed to download ${package}" ; return 1; }
 }
 
 download_vcs() {
@@ -113,7 +113,7 @@ download_vcs() {
 		fi
 	fi
 	remove_if_exists "${dst}"
-	${vcs} clone ${branch} -q "${url}" "${dst}" || (print_error "Failed to download ${package}" ; return 1)
+	${vcs} clone ${branch} -q "${url}" "${dst}" || { print_error "Failed to download ${package}" ; return 1; }
 }
 
 fix_install() {

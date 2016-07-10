@@ -56,3 +56,11 @@ if should_install "${package}" && ask "Install ${package}" Y ; then
 	update
 	install insync
 fi
+
+package="truecrypt"
+url="http://downloads.sourceforge.net/project/truecrypt/TrueCrypt/Other/TrueCrypt-7.2-Linux-x64.tar.gz?r=http%3A%2F%2Ftruecrypt.sourceforge.net%2FOtherPlatforms.html&ts=1468074826&use_mirror=liquidtelecom"
+if should_install "${package}" && ask "Install ${package}" Y ; then
+	download_wget ${package} "${url}" \
+		&& tar -xzf ${base}/${package} -C ${base} \
+		&& sudo ${base}/truecrypt-7.2-setup-x64
+fi
