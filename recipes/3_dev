@@ -3,6 +3,14 @@ install openjdk-8-jdk ant python python-dev python-pip python-virtualenv \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev \
 	xserver-xephyr ruby
 
+
+package="ansible"
+if should_install "${package}" && ask "Install ${package}?" Y; then
+	add_repo ppa:ansible/ansible
+	update
+	install ansible
+fi
+
 package="docker"
 if should_install "${package}" && ask "Install ${package}" Y ; then
 	sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
