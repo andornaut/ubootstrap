@@ -72,5 +72,5 @@ install_jetbrains() {
 }
 
 install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2016.2 professional community
-install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2016.2.1 U C
+install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2016.2.2 U C
 install_jetbrains webstorm https://download.jetbrains.com/webstorm/WebStorm- 2016.1.1
