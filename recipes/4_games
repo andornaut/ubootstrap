@@ -1,6 +1,6 @@
 package="crossover"
 if should_install "${package}" && ask "Install $package" Y; then
-	url='https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_15.0.1-1.deb'
+	url='https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_16.0.0-1.deb'
 	dst_bin=/opt/cxoffice/bin/crossover
 	dst_sh="${bin}/${package}"
 
