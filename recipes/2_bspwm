@@ -45,11 +45,3 @@ install_vcs git xdo 'https://github.com/baskerville/xdo.git'
 install_vcs git xtitle 'https://github.com/baskerville/xtitle.git'
 install_vcs git bspwm 'https://github.com/baskerville/bspwm.git'
 
-package=clipboard
-dst="${base}/${package}"
-dst_bin="/usr/lib/urxvt/perl/${package}"
-url='https://raw.github.com/muennich/urxvt-perls/master/clipboard'
-download_wget "${package}" "${url}" \
-	&& sudo mv "${dst}" /usr/lib/urxvt/perl/ \
-	&& success "${dst_bin}" \
-	|| failure "${dst_bin}"
