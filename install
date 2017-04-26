@@ -24,13 +24,13 @@ for recipe in ${script_base}/recipes/*; do
 done
 
 echo
-if ask "Skip already installed non-apt packages?" Y; then
-	is_skip=true
-else
+if ask "Upgrade existing non-apt packages?" Y; then
 	is_skip=false
+else
+	is_skip=true
 fi
 
-if ask "Upgrade existing packages?" Y; then
+if ask "Upgrade existing apt packages?" Y; then
 	print_header "Upgrading existing packages"
 	update \
 		&& sudo apt-get -qq upgrade -y \
@@ -47,3 +47,4 @@ done
 sudo apt-get -qq autoremove --purge -y >/dev/null
 
 echo -e "\nDone!\n"
+
