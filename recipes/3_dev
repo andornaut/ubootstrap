@@ -71,6 +71,6 @@ install_jetbrains() {
 	fi
 }
 
-install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2017.1.2 professional community
+install_jetbrains pycharm https://download.jetbrains.com/python/pycharm- 2017.1.1 professional community
 install_jetbrains idea https://download.jetbrains.com/idea/ideaI 2017.1.2 U C
 
