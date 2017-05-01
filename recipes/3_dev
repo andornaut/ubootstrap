@@ -1,5 +1,5 @@
 install openjdk-8-jdk ant python python-dev python-pip python-virtualenv \
-	virtualenvwrapper pydb mercurial git python-sphinx node-less postgresql \
+	virtualenvwrapper pydb mercurial git python-sphinx node-less postgresql-client \
 	meld libxml2-dev libxslt-dev mysql-client libmysqlclient-dev \
 	xserver-xephyr ruby
 
