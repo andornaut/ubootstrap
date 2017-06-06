@@ -4,6 +4,36 @@ install libx11-xcb-dev libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
 	libxcb-xinerama0-dev libcairo2-dev trayer volti xclip \
 	rxvt-unicode libxcb-xtest0-dev libasound2-dev
 
+# polybar deps:
+install \
+	libasound2-dev \
+	libcairo2-dev \
+	libiw-dev \
+	libx11-xcb-dev \
+	libxcb1-dev \
+	libxcb-composite0-dev \
+	libxcb-damage0-dev \
+	libxcb-ewmh-dev \
+	libxcb-icccm4-dev \
+	libxcb-image0-dev \
+	libxcb-randr0-dev \
+	libxcb-render0-dev \
+	libxcb-sync-dev \
+	libxcb-util0-dev \
+	libxcb-xkb-dev \
+	pkg-config \
+	python-xcbgen \
+	wireless-tools \
+	xcb-proto 
+
+pushd $(mktemp -d) \
+	&& git clone --branch 3.0.5 --recursive https://github.com/jaagr/polybar . \
+	&& mkdir build \
+	&& pushd build \
+	&& cmake .. \
+	&& sudo make install \
+	; popd -2
+
 # Rofi deps:
 install \
 	libxinerama-dev \
@@ -20,6 +50,7 @@ install \
 	libxcb-xinerama0-dev \
 	libxcb-ewmh-dev \
 	libxcb-icccm4-dev \
+	libxcb-util-dev \
 	libx11-xcb-dev
 
 package=rofi
