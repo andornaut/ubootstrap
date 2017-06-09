@@ -1,4 +1,4 @@
-install aptitude zip unzip gcc coreutils make build-essential exuberant-ctags \
+install aptitude zip unzip gcc coreutils cmake make build-essential exuberant-ctags \
     vim screen tmux curl dnsutils whois elinks ncftp wget nmap htop sysstat \
     atool highlight ntpdate rsync mutt irssi ssh ubuntu-restricted-extras \
 	python-software-properties software-center software-properties-common \
